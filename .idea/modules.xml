@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fifood.iml" filepath="$PROJECT_DIR$/fifood.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ff_android.iml" filepath="$PROJECT_DIR$/ff_android.iml" />
     </modules>
   </component>
 </project>

@@ -45,9 +45,6 @@ public class FooterFragment extends TabBaseFragment implements View.OnClickListe
         Bundle bundle=getArguments();
         String fragmenthistory = bundle.getString("message");
         int currenTab = TAB_HOME;
-//        if (null!= fragmenthistory && fragmenthistory.equals(HistoryShipFragment.class.getSimpleName())){
-//            currenTab = TAB_HISTORY;
-//        }
         setCurrentTab(currenTab);
     }
 

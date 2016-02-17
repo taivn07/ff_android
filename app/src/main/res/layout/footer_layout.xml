@@ -1,61 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="@color/themeHeader">
+    android:weightSum="5"
+    >
 
 
+    <ImageView
+        android:id="@+id/iv_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_home" />
 
-        <ImageView
-            android:id="@+id/iv_home"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_home"
-            android:layout_gravity="center"/>
+    <ImageView
+        android:id="@+id/iv_near_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_near" />
 
+    <ImageView
+        android:id="@+id/iv_add_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_add" />
 
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_search" />
 
-
-        <ImageView
-            android:layout_weight="1"
-            android:id="@+id/iv_near_me"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_near"
-            android:layout_gravity="center"/>
-
-
-
-
-        <ImageView
-            android:layout_weight="1"
-            android:id="@+id/iv_add_store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
-            android:layout_gravity="center"/>
-
-
-        <ImageView
-            android:layout_weight="1"
-            android:id="@+id/iv_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_search"
-            android:layout_gravity="center"/>
-
-
-
-        <ImageView
-            android:layout_weight="1"
-            android:id="@+id/iv_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_acc"
-            android:layout_gravity="center"/>
-
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_acc" />
 
 </LinearLayout>
