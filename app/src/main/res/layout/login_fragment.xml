@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image_background"
+    android:gravity="center_horizontal">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:layout_centerInParent="true"
+            />
+
+    <RelativeLayout
+        android:id="@+id/facebook_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_button_height"
+        android:layout_marginLeft="@dimen/login_button_margin"
+        android:layout_marginRight="@dimen/login_button_margin"
+        android:layout_marginBottom="40dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_login"
+        android:layout_alignParentBottom="true">
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/skip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="@string/join" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_image"
+            android:layout_weight="1"
+            android:src="@drawable/ic_play" />
+    </LinearLayout>
+
+
+</RelativeLayout>

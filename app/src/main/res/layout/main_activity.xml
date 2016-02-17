@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/main_activity_Rl"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout 
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/frame_header"
+        android:layout_above="@+id/frame_footer"
+        android:layout_height="match_parent"></FrameLayout>
+
+</RelativeLayout>

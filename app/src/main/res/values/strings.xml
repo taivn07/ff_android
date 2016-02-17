@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FIFOOD</string>
+    <string name="home">Home</string>
+    <string name="login">Login</string>
+    <string name="join">Tham gia ngay</string>
+    <string name="near_me">Near me</string>
+    <string name="add_store">Add Store</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="add">Add</string>
+    <string name="map">Map</string>
+    <string name="back">Back</string>
+</resources>
