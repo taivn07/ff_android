@@ -7,6 +7,8 @@ import android.app.FragmentTransaction;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.activity.TabBarAcitivity;
+import com.paditech.fifood.utils.APIClient;
+import com.paditech.fifood.utils.SettingClient;
 
 
 public class TabBaseFragment extends BaseFragment {
@@ -81,8 +83,16 @@ public class TabBaseFragment extends BaseFragment {
     public void closeChildFragment( Fragment fragment ) {
         FragmentManager fragmentManager = getChildFragmentManager();
         final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.remove( fragment );
+        transaction.remove(fragment);
         transaction.commit();
+    }
+
+    public APIClient getAPIClient() {
+        return ( (TabBarAcitivity) getActivity() ).getAPIClient();
+    }
+
+    public SettingClient getSettingClient() {
+        return ( (TabBarAcitivity) getActivity() ).getSettingClient();
     }
 
 }

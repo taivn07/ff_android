@@ -10,4 +10,10 @@
     </style>
     <style name="ChatTheme" parent="Theme.AppCompat.Light.NoActionBar"></style>
 
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingstars</item>
+        <item name="android:minHeight">15dp</item>
+        <item name="android:maxHeight">15dp</item>
+    </style>
+
 </resources>

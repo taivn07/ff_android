@@ -1,5 +1,6 @@
 package com.paditech.fifood.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -70,7 +71,7 @@ public class FooterFragment extends TabBaseFragment implements View.OnClickListe
             case TAB_HOME:
                 mCurrentTab = TAB_HOME;
                 showFragment(new HomeFragment());
-                mHome.setImageResource(R.drawable.ic_home_ac);
+                mHome.setBackgroundColor(getResources().getColor(R.color.themebutton));
                 break;
             case TAB_NEAR_ME:
                 mCurrentTab = TAB_NEAR_ME;
@@ -99,51 +100,51 @@ public class FooterFragment extends TabBaseFragment implements View.OnClickListe
                 if(mCurrentTab != TAB_HOME){
                     setCurrentTab(TAB_HOME);
                 }
-                mHome.setImageResource(R.drawable.ic_home_ac);
-                mNearMe.setImageResource(R.drawable.ic_near);
-                mAddStore.setImageResource(R.drawable.ic_add);
-                mSearch.setImageResource(R.drawable.ic_search);
-                mProfile.setImageResource(R.drawable.ic_acc);
+                mHome.setBackgroundColor(getResources().getColor(R.color.themebutton));
+                mNearMe.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mAddStore.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mSearch.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mProfile.setBackgroundColor(getResources().getColor(R.color.themeHeader));
                 break;
             case R.id.iv_near_me:
                 if(mCurrentTab != TAB_NEAR_ME){
                     setCurrentTab(TAB_NEAR_ME);
                 }
-                mNearMe.setImageResource(R.drawable.ic_near_ac);
-                mHome.setImageResource(R.drawable.ic_home);
-                mAddStore.setImageResource(R.drawable.ic_add);
-                mSearch.setImageResource(R.drawable.ic_search);
-                mProfile.setImageResource(R.drawable.ic_acc);
+                mNearMe.setBackgroundColor(getResources().getColor(R.color.themebutton));
+                mHome.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mAddStore.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mSearch.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mProfile.setBackgroundColor(getResources().getColor(R.color.themeHeader));
                 break;
             case R.id.iv_add_store:
                 if(mCurrentTab!= TAB_ADD_STORE){
                     setCurrentTab(TAB_ADD_STORE);
                 }
-                mAddStore.setImageResource(R.drawable.ic_add_ac);
-                mNearMe.setImageResource(R.drawable.ic_near);
-                mHome.setImageResource(R.drawable.ic_home);
-                mSearch.setImageResource(R.drawable.ic_search);
-                mProfile.setImageResource(R.drawable.ic_acc);
+                mAddStore.setBackgroundColor(getResources().getColor(R.color.themebutton));
+                mNearMe.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mHome.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mSearch.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mProfile.setBackgroundColor(getResources().getColor(R.color.themeHeader));
                 break;
             case R.id.iv_search:
                 if(mCurrentTab != TAB_SEARCH){
                     setCurrentTab(TAB_SEARCH);
                 }
-                mSearch.setImageResource(R.drawable.ic_search_ac);
-                mNearMe.setImageResource(R.drawable.ic_near);
-                mHome.setImageResource(R.drawable.ic_home);
-                mAddStore.setImageResource(R.drawable.ic_add);
-                mProfile.setImageResource(R.drawable.ic_acc);
+                mSearch.setBackgroundColor(getResources().getColor(R.color.themebutton));
+                mNearMe.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mHome.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mAddStore.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mProfile.setBackgroundColor(getResources().getColor(R.color.themeHeader));
                 break;
             case R.id.iv_profile:
                 if(mCurrentTab != TAB_PROFILE){
                     setCurrentTab(TAB_PROFILE);
                 }
-                mProfile.setImageResource(R.drawable.ic_acc_ac);
-                mNearMe.setImageResource(R.drawable.ic_near);
-                mHome.setImageResource(R.drawable.ic_home);
-                mSearch.setImageResource(R.drawable.ic_search);
-                mAddStore.setImageResource(R.drawable.ic_add);
+                mProfile.setBackgroundColor(getResources().getColor(R.color.themebutton));
+                mNearMe.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mHome.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mSearch.setBackgroundColor(getResources().getColor(R.color.themeHeader));
+                mAddStore.setBackgroundColor(getResources().getColor(R.color.themeHeader));
                 break;
         }
 

@@ -33,6 +33,14 @@
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait" />
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="d9dee0cf21a54581bd6a0ca4fdda6fabd739eaad" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.paditech.fifood.R;
 import com.paditech.fifood.fragment.FooterFragment;
+import com.paditech.fifood.utils.APIClient;
+import com.paditech.fifood.utils.SettingClient;
 
 /**
  * Created by PaditechPC1 on 2/16/2016.
@@ -19,6 +21,8 @@ import com.paditech.fifood.fragment.FooterFragment;
 public class TabBarAcitivity extends BaseActivity implements View.OnClickListener {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
+    APIClient mAPIClient;
+    SettingClient mSettingClient;
 
     private int mCurrentMenu = 0;
     private FooterFragment mFooter = new FooterFragment();
@@ -89,5 +93,13 @@ public class TabBarAcitivity extends BaseActivity implements View.OnClickListene
 
     public int getCurrentMenu() {
         return mCurrentMenu;
+    }
+
+    public APIClient getAPIClient() {
+        return mAPIClient;
+    }
+
+    public SettingClient getSettingClient() {
+        return mSettingClient;
     }
 }

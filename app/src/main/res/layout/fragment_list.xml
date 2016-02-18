@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
+    <ListView
+        android:id="@+id/lv_list_store"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/abc"
-        android:background="@color/themeHeader"
-        android:layout_marginTop="@dimen/default_margin"/>
+        android:layout_height="wrap_content">
+    </ListView>
 
 </LinearLayout>

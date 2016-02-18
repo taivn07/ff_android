@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.paditech.fifood.R;
+import com.paditech.fifood.activity.BaseActivity;
 
 import java.util.Stack;
 
@@ -15,6 +16,7 @@ import java.util.Stack;
 public class HomeFragment extends TabBaseFragment implements View.OnClickListener {
 
     Stack<String> keywords = new Stack<>();
+    BaseActivity mBaseActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class HomeFragment extends TabBaseFragment implements View.OnClickListene
     }
 
     private void init() {
+        final View view = getView();
+        mBaseActivity = (BaseActivity) getActivity();
         showChildFragment(new ListStoreFragment(), true);
     }
 

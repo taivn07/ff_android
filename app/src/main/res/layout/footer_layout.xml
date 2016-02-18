@@ -6,40 +6,44 @@
     android:weightSum="5"
     >
 
-
     <ImageView
         android:id="@+id/iv_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/ic_home" />
+        android:src="@drawable/ic_home"
+        android:background="@color/themeHeader"/>
 
     <ImageView
         android:id="@+id/iv_near_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/ic_near" />
+        android:src="@drawable/ic_near"
+        android:background="@color/themeHeader"/>
 
     <ImageView
         android:id="@+id/iv_add_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add"
+        android:background="@color/themeHeader"/>
 
     <ImageView
         android:id="@+id/iv_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/ic_search" />
+        android:src="@drawable/ic_search"
+        android:background="@color/themeHeader"/>
 
     <ImageView
         android:id="@+id/iv_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:src="@drawable/ic_acc" />
+        android:src="@drawable/ic_acc"
+        android:background="@color/themeHeader"/>
 
 </LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_item_list_store"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4">
+
+            <ImageView
+                android:id="@+id/iv_avatar_store"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:src="@drawable/profile_placeholder" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/name_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/user_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_store"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="dia chi" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35">
+
+            <RatingBar
+                android:id="@+id/iv_number_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:isIndicator="false"
+                android:numStars="5"
+                android:rating="0"
+                style="@style/foodRatingBar"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_number_star"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:gravity="center"
+                android:text="123"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
