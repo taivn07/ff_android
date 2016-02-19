@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by PaditechPC1 on 2/18/2016.
  */
-public class HomeListStoreAdapter extends BaseAdapter implements View.OnClickListener {
+public class HomeListStoreAdapter extends BaseAdapter  {
     private static final String TAG = HomeListStoreAdapter.class.getSimpleName();
     BaseActivity mBaseActivity;
     private List<ListStore> mListStores;
@@ -24,7 +24,6 @@ public class HomeListStoreAdapter extends BaseAdapter implements View.OnClickLis
     public HomeListStoreAdapter(BaseActivity activity) {
         super();
         this.mBaseActivity = activity;
-        Log.d(TAG,"123");
     }
 
     public void setPosts(List<ListStore> listStores) {
@@ -59,9 +58,7 @@ public class HomeListStoreAdapter extends BaseAdapter implements View.OnClickLis
             LayoutInflater inflater = LayoutInflater.from(mBaseActivity);
             convertView = inflater.inflate(R.layout.list_store_home_item, null);
             holder = new ViewHolder();
-
             holder.mNameStore = (TextView)convertView.findViewById(R.id.name_store);
-
 
             convertView.setTag(holder);
         } else {
@@ -71,11 +68,6 @@ public class HomeListStoreAdapter extends BaseAdapter implements View.OnClickLis
         holder.mNameStore.setText(listStore.name);
 
         return convertView;
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     private class ViewHolder {

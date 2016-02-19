@@ -31,11 +31,11 @@ public class TabBarAcitivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navi_activity);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name);
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//
+//        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name);
+//
+//        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         Bundle bundle = new Bundle();
         bundle.putString("message", getIntent().getStringExtra("message"));

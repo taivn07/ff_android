@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store Name"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"/>
+        <EditText
+            android:id="@+id/et_name_store"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_search_size"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/theme_color_border_background"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store Address"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginTop="5dp"/>
+        <EditText
+            android:id="@+id/et_store_address"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_search_size"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginRight="@dimen/default_margin"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/theme_color_border_background"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
+        <ImageView
+            android:id="@+id/bt_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/default_margin"
+            android:src="@drawable/bg_search"/>
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lv_list_store_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+</LinearLayout>

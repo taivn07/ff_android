@@ -7,38 +7,39 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import com.google.gson.Gson;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.adapter.HomeListStoreAdapter;
-
-import java.io.IOException;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.paditech.fifood.model.ListStores;
 import com.paditech.fifood.utils.DialogUtil;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import java.io.IOException;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 /**
- * Created by PaditechPC1 on 2/17/2016.
+ * Created by PaditechPC1 on 2/19/2016.
  */
-public class ListStoreFragment extends TabBaseFragment implements AdapterView.OnItemClickListener {
+public class SearchStoreFragment extends TabBaseFragment implements AdapterView.OnItemClickListener {
     private static final String TAG = ListStoreFragment.class.getSimpleName();
 
-    HomeFragment mhomeFragment;
+    SearchFragment mSearchFragment;
     HomeListStoreAdapter mHomeListStoreAdapter;
-    ListView mListStore;
+    ListView mListStoreSearch;
     private BaseActivity mBaseActivity;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_list, container, false);
+        return inflater.inflate(R.layout.fragment_search_store, container, false);
     }
 
     @Override
@@ -49,18 +50,17 @@ public class ListStoreFragment extends TabBaseFragment implements AdapterView.On
 
     private void init() {
         View view = getView();
-        mhomeFragment = (HomeFragment) getParentFragment();
-        mBaseActivity = mhomeFragment.mBaseActivity;
+        mSearchFragment = (SearchFragment) getParentFragment();
+        mBaseActivity = mSearchFragment.mBaseActivity;
         mHomeListStoreAdapter = new HomeListStoreAdapter(mBaseActivity);
-        mListStore = (ListView)view.findViewById(R.id.lv_list_store);
-        mListStore.setAdapter(mHomeListStoreAdapter);
-        mListStore.setOnItemClickListener(this);
+        mListStoreSearch = (ListView)view.findViewById(R.id.lv_list_store_search);
+        mListStoreSearch.setAdapter(mHomeListStoreAdapter);
+        mListStoreSearch.setOnItemClickListener(this);
         String body = fakeResponse();
         final ListStores data = new Gson().fromJson(body, ListStores.class);
         mHomeListStoreAdapter.setPosts(data.data);
 
     }
-
 
     private void getPost(){
         final Dialog dialog = DialogUtil.makeLoadingDialog(mBaseActivity);
@@ -105,12 +105,61 @@ public class ListStoreFragment extends TabBaseFragment implements AdapterView.On
 
 
     private void gotoDetail() {
-        mhomeFragment.gotoDetail();
+        mSearchFragment.gotoDetail();
     }
 
     private String fakeResponse() {
         return "{\n" +
                 "    \"data\": [\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
+                "        {\n" +
+                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
+                "            \"name\": \"test_name\",\n" +
+                "            \"thumbnailImageUrl\": \"\",\n" +
+                "            \"accountComment\": \"\",\n" +
+                "            \"isFollowed\": false\n" +
+                "        },\n" +
                 "        {\n" +
                 "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
                 "            \"name\": \"test_name\",\n" +
