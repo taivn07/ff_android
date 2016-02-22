@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_root_post_detail"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white">
+
     <LinearLayout
         android:id="@+id/ll_item_list_store"
         android:layout_width="fill_parent"
@@ -35,16 +35,17 @@
             android:layout_weight="0.25">
 
             <TextView
-                android:id="@+id/name_store"
+                android:id="@+id/name_store_my_profile_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/default_margin"
                 android:text="@string/user_name" />
 
             <TextView
+                android:id="@+id/address_post_my_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/name_store"
+                android:layout_below="@id/name_store_my_profile_post"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:text="dia chi" />
@@ -55,36 +56,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.35">
 
-            <RatingBar
-                android:id="@+id/iv_number_star"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="0"
-                style="@style/foodRatingBar"
-                android:background="@color/white"
-                android:focusable="false"/>
-
             <TextView
-                android:id="@+id/range"
+                android:id="@+id/number_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_number_star"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="@dimen/default_margin"
                 android:gravity="center"
                 android:text="123"/>
         </RelativeLayout>
     </LinearLayout>
-    <ImageView
-        android:id="@+id/iv_image_store"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></LinearLayout>
 
 </LinearLayout>

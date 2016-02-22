@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.paditech.fifood.R;
+import com.paditech.fifood.activity.BaseActivity;
 
 /**
  * Created by PaditechPC1 on 2/16/2016.
  */
 public class ProfileFragment extends TabBaseFragment implements View.OnClickListener {
+    BaseActivity mBaseActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,15 +37,24 @@ public class ProfileFragment extends TabBaseFragment implements View.OnClickList
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        init();
+    }
+
+    private void init() {
         setHeaderTitle(getString(R.string.profile));
         setHeaderButtonRight(View.INVISIBLE);
         setHeaderButtonLeft(View.INVISIBLE);
         setCurrentMenu(0);
-
+        mBaseActivity = (BaseActivity)getActivity();
+        showChildFragment(new MyProfileFragment(), true);
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void gotoDetail(){
+        showChildFragment(new ShopDetailFragment(),true);
     }
 }

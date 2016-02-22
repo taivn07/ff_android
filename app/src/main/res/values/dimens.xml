@@ -10,5 +10,11 @@
     <dimen name="image_size">60dp</dimen>
     <dimen name="edit_text_search_size">40dp</dimen>
     <dimen name="map_size">300dp</dimen>
+    <dimen name="height_layout_number_post">50dp</dimen>
+    <dimen name="height_layout_logout">80dp</dimen>
+    <dimen name="text_size_add_store">13sp</dimen>
+    <dimen name="height_edit_content_add_store">150dp</dimen>
+    <dimen name="view_margin">20dp</dimen>
+
 
 </resources>

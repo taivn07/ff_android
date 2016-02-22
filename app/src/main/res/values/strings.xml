@@ -16,5 +16,14 @@
     <string name="error_retry">Please try again</string>
     <string name="ok">OK</string>
     <string name="cancel">CANCEL</string>
+    <string name="total_posts">Total posts:</string>
+    <string name="logout">Logout</string>
+    <string name="store_name">Store Name</string>
+    <string name="store_address">Store Address</string>
+    <string name="content">Content</string>
+    <string name="good">Good</string>
+    <string name="bad">Bad</string>
+    <string name="hygiene_problem">Hygiene Problem</string>
+
 
 </resources>

@@ -7,4 +7,6 @@
     <color name="colorText">#86D751</color>
     <color name="white">#ffffff</color>
     <color name="themebutton">#FEC943</color>
+    <color name="theme_view_1">#703d3d</color>
+    <color name="theme_view_2">#0f2ac4</color>
 </resources>
