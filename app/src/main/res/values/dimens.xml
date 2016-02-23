@@ -15,6 +15,12 @@
     <dimen name="text_size_add_store">13sp</dimen>
     <dimen name="height_edit_content_add_store">150dp</dimen>
     <dimen name="view_margin">20dp</dimen>
+    <dimen name="store_image_height">200dp</dimen>
+    <dimen name="height_layout_tool_bar_shop_detail">100dp</dimen>
+    <dimen name="height_layout_comment_shop_detail">40dp</dimen>
+    <dimen name="edit_text_comment_height">35dp</dimen>
+    <dimen name="image_post_comment_size">250dp</dimen>
+    <dimen name="image_store_grid_height">100dp</dimen>
 
 
 </resources>

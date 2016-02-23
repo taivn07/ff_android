@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/ll_item_list_comment_store"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_avatar_user_name"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:src="@drawable/profile_placeholder" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/user_name"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tv_account_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_user_name"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="0" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35">
+            <TextView
+                android:id="@+id/tv_number_days_comment_ago"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/days"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_post_image_comment_account"
+        android:layout_width="@dimen/image_post_comment_size"
+        android:layout_height="@dimen/image_post_comment_size"
+        android:layout_gravity="center"
+        android:src="@drawable/image_placeholder"
+        android:background="@drawable/border_image_post_comment_store"
+        android:scaleType="centerCrop"/>
+
+</LinearLayout>

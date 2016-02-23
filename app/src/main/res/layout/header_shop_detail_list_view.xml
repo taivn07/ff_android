@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root_post_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll_item_list_store"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4">
+
+            <ImageView
+                android:id="@+id/iv_avatar_store"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_centerInParent="true"
+                android:layout_margin="5dp"
+                android:src="@drawable/profile_placeholder" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="0.25">
+
+            <TextView
+                android:id="@+id/name_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/user_name" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/name_store"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:text="dia chi" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35">
+
+            <RatingBar
+                android:id="@+id/iv_number_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="0"
+                style="@style/foodRatingBar"
+                android:background="@color/white"
+                android:focusable="false"/>
+
+            <TextView
+                android:id="@+id/range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_number_star"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:gravity="center"
+                android:text="0"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_image_store"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/store_image_height"
+        android:src="@drawable/image_placeholder"
+        android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:weightSum="3"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/number_comment_good"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginLeft="@dimen/default_margin"/>
+            <TextView
+                android:id="@+id/tv_good_shop_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_good_ac"
+                android:text="@string/good"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:layout_marginLeft="5dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/number_comment_bad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_above="@+id/bt_good_shop_detail"
+                android:layout_marginLeft="@dimen/default_margin"/>
+            <TextView
+                android:id="@+id/tv_bad_shop_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_good_ac"
+                android:text="@string/bad"
+                android:layout_gravity="center"
+                android:textAllCaps="false"
+                android:layout_marginLeft="5dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_status_checked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Unchecked"
+                android:layout_above="@+id/bt_good_shop_detail"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/food_safety_authority"
+                android:gravity="center"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

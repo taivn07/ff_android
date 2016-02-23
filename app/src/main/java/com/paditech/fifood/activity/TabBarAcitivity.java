@@ -3,6 +3,7 @@ package com.paditech.fifood.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.View;
@@ -26,17 +27,13 @@ public class TabBarAcitivity extends BaseActivity implements View.OnClickListene
 
     private int mCurrentMenu = 0;
     private FooterFragment mFooter = new FooterFragment();
+    Button mBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navi_activity);
-
-//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//
-//        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.app_name, R.string.app_name);
-//
-//        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
+        mBack =(Button) findViewById(R.id.bt_back);
+        mBack.setOnClickListener(this);
         Bundle bundle = new Bundle();
         bundle.putString("message", getIntent().getStringExtra("message"));
         mFooter.setArguments(bundle);
@@ -48,6 +45,8 @@ public class TabBarAcitivity extends BaseActivity implements View.OnClickListene
         fm.beginTransaction().replace(R.id.frame_footer, fragment)
                 .commit();
     }
+
+
 
     public void showFooter() {
         findViewById(R.id.frame_footer).setVisibility(View.VISIBLE);
@@ -68,7 +67,12 @@ public class TabBarAcitivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.bt_back:
+                onBackPressed();
+                break;
+            default:break;
+        }
     }
 
 

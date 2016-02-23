@@ -24,6 +24,10 @@
     <string name="good">Good</string>
     <string name="bad">Bad</string>
     <string name="hygiene_problem">Hygiene Problem</string>
-
+    <string name="post">Post</string>
+    <string name="hint">Write a comment ...</string>
+    <string name="days">days</string>
+    <string name="food_safety_authority">Food Safety Authority</string>
+    <string name="images">Images</string>
 
 </resources>

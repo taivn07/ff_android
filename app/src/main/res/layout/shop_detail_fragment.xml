@@ -1,90 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_root_post_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <ListView
+        android:id="@+id/lv_detail_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ListView>
     <LinearLayout
-        android:id="@+id/ll_item_list_store"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
-
-        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_layout_tool_bar_shop_detail"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4">
-
-            <ImageView
-                android:id="@+id/iv_avatar_store"
-                android:layout_width="@dimen/image_size"
-                android:layout_height="@dimen/image_size"
-                android:layout_centerInParent="true"
-                android:layout_margin="5dp"
-                android:src="@drawable/profile_placeholder" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0.25">
-
-            <TextView
-                android:id="@+id/name_store"
+            android:layout_height="@dimen/height_layout_comment_shop_detail"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <EditText
+                android:id="@+id/et_input_comment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/user_name" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/name_store"
-                android:layout_marginBottom="5dp"
+                android:layout_height="@dimen/edit_text_comment_height"
+                android:layout_weight="0.15"
+                android:layout_marginLeft="@dimen/default_margin"
                 android:layout_marginTop="5dp"
-                android:text="dia chi" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.35">
-
-            <RatingBar
-                android:id="@+id/iv_number_star"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="0"
-                style="@style/foodRatingBar"
-                android:background="@color/white"
-                android:focusable="false"/>
-
-            <TextView
-                android:id="@+id/range"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/theme_color_border_background_edit_text"
+                android:layout_gravity="center"
+                android:hint="@string/hint"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+            <Button
+                android:id="@+id/bt_post_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_number_star"
-                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="@dimen/default_margin"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:layout_weight="0.85"
                 android:gravity="center"
-                android:text="123"/>
-        </RelativeLayout>
+                android:layout_gravity="center"
+                android:text="@string/post"
+                android:background="@color/white"
+                android:textColor="@color/themeHeader"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+            <TextView
+                android:id="@+id/bt_take_image_shop_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/cam"
+                android:background="@color/white"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/bt_status_good_shop_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_good"
+                android:text="@string/good"
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                android:background="@color/white"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/bt_status_bad_shop_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_bad"
+                android:background="@color/white"
+                android:text="@string/bad"
+                android:textAllCaps="false"
+                android:gravity="left|center"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/bt_hygiene_problem_shop_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/hygiene_problem"
+                android:textAllCaps="false"
+                android:background="@color/white"
+                android:gravity="left|center"
+                android:drawableRight="@drawable/checkbox_bg"
+                android:layout_marginRight="5dp"
+                />
+        </LinearLayout>
     </LinearLayout>
-    <ImageView
-        android:id="@+id/iv_image_store"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
