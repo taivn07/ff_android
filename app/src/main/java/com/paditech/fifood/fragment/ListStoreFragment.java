@@ -1,6 +1,5 @@
 package com.paditech.fifood.fragment;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +18,6 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.paditech.fifood.model.ListStores;
-import com.paditech.fifood.utils.DialogUtil;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -55,52 +53,59 @@ public class ListStoreFragment extends TabBaseFragment implements AdapterView.On
         mListStore = (ListView)view.findViewById(R.id.lv_list_store);
         mListStore.setAdapter(mHomeListStoreAdapter);
         mListStore.setOnItemClickListener(this);
-        String body = fakeResponse();
-        final ListStores data = new Gson().fromJson(body, ListStores.class);
-        mHomeListStoreAdapter.setPosts(data.data);
+//        String body = fakeResponse();
+//        final ListStores data = new Gson().fromJson(body, ListStores.class);
+//        mHomeListStoreAdapter.setPosts(data.data);
+        getPost();
 
     }
 
 
     private void getPost(){
-        final Dialog dialog = DialogUtil.makeLoadingDialog(mBaseActivity);
-        dialog.show();
+//        final Dialog dialog = DialogUtil.makeLoadingDialog(mBaseActivity);
+//        dialog.show();
 
         Callback callback = new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-                dialog.dismiss();
+//                dialog.dismiss();
             }
             @Override
-            public void onResponse(Response response) throws IOException {
-//                String body = response.body().string();
-                String body = fakeResponse();
-                if (response.isSuccessful()) {
+            public void onResponse(Response mResponse) throws IOException {
+                String body = mResponse.body().string();
+//                String body = fakeResponse();
+                if (mResponse.isSuccessful()) {
                     Log.d(TAG, body);
                     final ListStores data = new Gson().fromJson(body, ListStores.class);
+
                     mBaseActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mHomeListStoreAdapter.setPosts(data.data);
+                            mHomeListStoreAdapter.setPosts(data.response.shops);
                         }
                     });
                     mBaseActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            dialog.dismiss();
+//                            dialog.dismiss();
                         }
                     });
                 } else {
-                    body = response.body().string();
+                    body = mResponse.body().string();
                     Log.d( TAG, body );
                 }
             }
         };
-        String put_offset = String.valueOf(0);
-        SortedMap<String, String> params = new TreeMap<>();
-        params.put("page_type", "Home");
+        String put_offset = String.valueOf(25);
+        SortedMap <String, String> params = new TreeMap<>();
+        params.put("user_id", "10");
+        params.put("lat","20.996309");
+        params.put("longth","105.827309");
+        params.put("token","");
+        params.put("lang","vi");
+        params.put("index","1");
         params.put("offset", put_offset);
-        getAPIClient().execGet("/post", params, callback);
+        getAPIClient().execPostWithUrlParameters("/recomment", params, params, callback);
     }
 
 

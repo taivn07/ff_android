@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.activity.MainActivity;
+import com.paditech.fifood.utils.APIClient;
+import com.paditech.fifood.utils.SettingClient;
 
 
 public abstract class BaseFragment extends Fragment {
@@ -57,5 +59,13 @@ public abstract class BaseFragment extends Fragment {
 
 	public void setHeaderTitle(String title){
 		((MainActivity)getActivity()).setHeaderTitle(title);
+	}
+
+	public APIClient getAPIClient() {
+		return ( (BaseActivity) getActivity() ).getAPIClient();
+	}
+
+	public SettingClient getSettingClient() {
+		return ( (BaseActivity) getActivity() ).getSettingClient();
 	}
 }

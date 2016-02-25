@@ -31,6 +31,8 @@ public class TabBarAcitivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAPIClient = new APIClient( this );
+        mSettingClient = new SettingClient( this );
         setContentView(R.layout.navi_activity);
         mBack =(Button) findViewById(R.id.bt_back);
         mBack.setOnClickListener(this);

@@ -86,7 +86,7 @@
             android:layout_weight="0.35">
 
             <RatingBar
-                android:id="@+id/iv_number_star"
+                android:id="@+id/rb_number_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -101,7 +101,7 @@
                 android:id="@+id/tv_range"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_number_star"
+                android:layout_below="@+id/rb_number_star"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="@dimen/default_margin"
                 android:gravity="center"

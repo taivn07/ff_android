@@ -7,9 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 import com.google.gson.Gson;
 import com.paditech.fifood.R;
@@ -56,9 +54,9 @@ public class SearchStoreFragment extends TabBaseFragment implements AdapterView.
         mListStoreSearch = (ListView)view.findViewById(R.id.lv_list_store_search);
         mListStoreSearch.setAdapter(mHomeListStoreAdapter);
         mListStoreSearch.setOnItemClickListener(this);
-        String body = fakeResponse();
-        final ListStores data = new Gson().fromJson(body, ListStores.class);
-        mHomeListStoreAdapter.setPosts(data.data);
+//        String body = fakeResponse();
+//        final ListStores data = new Gson().fromJson(body, ListStores.class);
+//        mHomeListStoreAdapter.setPosts(data.data);
 
     }
 
@@ -81,7 +79,7 @@ public class SearchStoreFragment extends TabBaseFragment implements AdapterView.
                     mBaseActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mHomeListStoreAdapter.setPosts(data.data);
+//                            mHomeListStoreAdapter.setPosts(data.data);
                         }
                     });
                     mBaseActivity.runOnUiThread(new Runnable() {

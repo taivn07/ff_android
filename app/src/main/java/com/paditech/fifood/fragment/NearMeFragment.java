@@ -9,16 +9,13 @@ import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.adapter.HomeListStoreAdapter;
-import com.paditech.fifood.model.ListStores;
 
 /**
  * Created by PaditechPC1 on 2/16/2016.
@@ -67,9 +64,9 @@ public class NearMeFragment extends TabBaseFragment implements View.OnClickListe
         mHomeListStoreAdapter = new HomeListStoreAdapter(mBaseActivity);
         mListStoreNearMe = (ListView) view.findViewById(R.id.map);
         mListStoreNearMe.setAdapter(mHomeListStoreAdapter);
-        String body = fakeResponse();
-        final ListStores data = new Gson().fromJson(body, ListStores.class);
-        mHomeListStoreAdapter.setPosts(data.data);
+//        String body = fakeResponse();
+//        final ListStores data = new Gson().fromJson(body, ListStores.class);
+//        mHomeListStoreAdapter.setPosts(data.data);
         initilizeMap();
 
     }

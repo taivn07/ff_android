@@ -10,7 +10,6 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
-import com.paditech.fifood.adapter.HomeListStoreAdapter;
 import com.paditech.fifood.adapter.ListStorePostMyProfileAdapter;
 import com.paditech.fifood.model.ListStores;
 
@@ -47,7 +46,7 @@ public class MyProfileFragment extends TabBaseFragment implements AdapterView.On
         mListStoreProfile.setOnItemClickListener(this);
         String body = fakeResponse();
         final ListStores data = new Gson().fromJson(body, ListStores.class);
-        mListStorePostMyProfileAdapter.setPosts(data.data);
+//        mListStorePostMyProfileAdapter.setPosts(data.data);
 
     }
 

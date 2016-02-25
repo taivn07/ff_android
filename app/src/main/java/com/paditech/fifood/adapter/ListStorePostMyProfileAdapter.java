@@ -64,7 +64,7 @@ public class ListStorePostMyProfileAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         final ListStore listStore = getItem(position);
-        holder.mNameStore.setText(listStore.name);
+//        holder.mNameStore.setText(listStore.name);
 
         return convertView;
     }

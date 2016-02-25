@@ -18,7 +18,7 @@ public class Const {
 
     static final OkHttpClient HTTP_CLIENT = new OkHttpClient();
 
-    public static final String API_ENDPOINT = "http://160.16.100.24";
+    public static final String API_ENDPOINT = "http://paditech.com/fifood_server/api/v1";
 
     public static final String PREF_NAME = "Fifood";
 

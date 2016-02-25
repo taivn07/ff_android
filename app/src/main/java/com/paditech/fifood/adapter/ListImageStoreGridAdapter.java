@@ -8,7 +8,10 @@ import android.widget.ImageView;
 
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
+import com.paditech.fifood.model.Images;
 import com.paditech.fifood.model.ListStore;
+import com.paditech.fifood.utils.StringUtil;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -17,29 +20,29 @@ import java.util.List;
  */
 public class ListImageStoreGridAdapter extends BaseAdapter {
     BaseActivity mBaseActivity;
-    private List<ListStore> mListStores;
+    private List<Images> mImages;
 
     public ListImageStoreGridAdapter(BaseActivity activity) {
         super();
         this.mBaseActivity = activity;
     }
 
-    public void setPosts(List<ListStore> listStores) {
-        this.mListStores = listStores;
+    public void setPosts(List<Images> Images) {
+        this.mImages = Images;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        if (mListStores != null) {
-            return mListStores.size();
+        if (mImages != null) {
+            return mImages.size();
         }
         return 0;
     }
 
     @Override
-    public ListStore getItem(int position) {
-        return mListStores.get(position);
+    public Images getItem(int position) {
+        return mImages.get(position);
     }
 
     @Override
@@ -55,13 +58,16 @@ public class ListImageStoreGridAdapter extends BaseAdapter {
             LayoutInflater inflater = LayoutInflater.from(mBaseActivity);
             convertView = inflater.inflate(R.layout.list_image_store_item, null);
             holder = new ViewHolder();
-            holder.mPostImageCommentStore = (ImageView)convertView.findViewById(R.id.iv_image_store_item);
+            holder.mPostImageCommentStore = (ImageView) convertView.findViewById(R.id.iv_image_store_item);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        final ListStore listStore = getItem(position);
+        final Images images = getItem(position);
+        if (!StringUtil.isEmpty(images.url)) {
+            Picasso.with(mBaseActivity).load(images.url).placeholder(R.drawable.profile_placeholder).into(holder.mPostImageCommentStore);
+        }
 
 
         return convertView;

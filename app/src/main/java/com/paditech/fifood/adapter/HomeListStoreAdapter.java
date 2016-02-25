@@ -1,15 +1,18 @@
 package com.paditech.fifood.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
-import com.paditech.fifood.model.ListStore;
+import com.paditech.fifood.model.Shops;
+import com.paditech.fifood.utils.StringUtil;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,29 +22,29 @@ import java.util.List;
 public class HomeListStoreAdapter extends BaseAdapter  {
     private static final String TAG = HomeListStoreAdapter.class.getSimpleName();
     BaseActivity mBaseActivity;
-    private List<ListStore> mListStores;
+    private List<Shops> mPost;
 
     public HomeListStoreAdapter(BaseActivity activity) {
         super();
         this.mBaseActivity = activity;
     }
 
-    public void setPosts(List<ListStore> listStores) {
-        this.mListStores = listStores;
+    public void setPosts(List<Shops> posts) {
+        this.mPost = posts;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        if (mListStores != null) {
-            return mListStores.size();
+        if (mPost != null) {
+            return mPost.size();
         }
         return 0;
     }
 
     @Override
-    public ListStore getItem(int position) {
-        return mListStores.get(position);
+    public Shops getItem(int position) {
+        return mPost.get(position);
     }
 
     @Override
@@ -59,19 +62,29 @@ public class HomeListStoreAdapter extends BaseAdapter  {
             convertView = inflater.inflate(R.layout.list_store_home_item, null);
             holder = new ViewHolder();
             holder.mNameStore = (TextView)convertView.findViewById(R.id.name_store);
-
+            holder.mAddress = (TextView) convertView.findViewById(R.id.tv_address_store_home);
+            holder.mAvatarStore = (ImageView)convertView.findViewById(R.id.iv_avatar_store);
+            holder.mStart = (RatingBar)convertView.findViewById(R.id.rb_number_star);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        final ListStore listStore = getItem(position);
-        holder.mNameStore.setText(listStore.name);
+        final Shops shops = getItem(position);
+        holder.mNameStore.setText(shops.name);
+        holder.mAddress.setText(shops.address);
+        if (!StringUtil.isEmpty(shops.file.url)){
+            Picasso.with(mBaseActivity).load(shops.file.url).placeholder(R.drawable.profile_placeholder).into(holder.mAvatarStore);
+        }
+        holder.mStart.setRating(shops.rating);
 
         return convertView;
     }
 
     private class ViewHolder {
         TextView mNameStore;
+        TextView mAddress;
+        ImageView mAvatarStore;
+        RatingBar mStart;
 
     }
 }
