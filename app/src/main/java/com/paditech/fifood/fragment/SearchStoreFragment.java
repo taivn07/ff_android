@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
@@ -26,13 +28,16 @@ import java.util.TreeMap;
 /**
  * Created by PaditechPC1 on 2/19/2016.
  */
-public class SearchStoreFragment extends TabBaseFragment implements AdapterView.OnItemClickListener {
+public class SearchStoreFragment extends TabBaseFragment implements AdapterView.OnItemClickListener,View.OnClickListener {
     private static final String TAG = SearchStoreFragment.class.getSimpleName();
 
     SearchFragment mSearchFragment;
     HomeListStoreAdapter mHomeListStoreAdapter;
     ListView mListStoreSearch;
     private BaseActivity mBaseActivity;
+    ImageView mSearch;
+    EditText mNameStore;
+    EditText mAddressSearch;
 
 
     @Override
@@ -50,135 +55,81 @@ public class SearchStoreFragment extends TabBaseFragment implements AdapterView.
         View view = getView();
         mSearchFragment = (SearchFragment) getParentFragment();
         mBaseActivity = mSearchFragment.mBaseActivity;
+        mSearch = (ImageView) view.findViewById(R.id.bt_search);
+        mSearch.setOnClickListener(this);
+        mNameStore = (EditText)view.findViewById(R.id.et_name_store);
+        mAddressSearch = (EditText)view.findViewById(R.id.et_store_address);
         mHomeListStoreAdapter = new HomeListStoreAdapter(mBaseActivity);
-        mListStoreSearch = (ListView)view.findViewById(R.id.lv_list_store_search);
+        mListStoreSearch = (ListView) view.findViewById(R.id.lv_list_store_search);
         mListStoreSearch.setAdapter(mHomeListStoreAdapter);
         mListStoreSearch.setOnItemClickListener(this);
-//        String body = fakeResponse();
-//        final ListStores data = new Gson().fromJson(body, ListStores.class);
-//        mHomeListStoreAdapter.setPosts(data.data);
+        getSearchStore();
 
     }
 
-    private void getPost(){
-        final Dialog dialog = DialogUtil.makeLoadingDialog(mBaseActivity);
-        dialog.show();
-
-        Callback callback = new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                dialog.dismiss();
-            }
-            @Override
-            public void onResponse(Response response) throws IOException {
-//                String body = response.body().string();
-                String body = fakeResponse();
-                if (response.isSuccessful()) {
-                    Log.d(TAG, body);
-                    final ListStores data = new Gson().fromJson(body, ListStores.class);
-                    mBaseActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-//                            mHomeListStoreAdapter.setPosts(data.data);
-                        }
-                    });
-                    mBaseActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            dialog.dismiss();
-                        }
-                    });
-                } else {
-                    body = response.body().string();
-                    Log.d( TAG, body );
-                }
-            }
-        };
-        String put_offset = String.valueOf(0);
-        SortedMap<String, String> params = new TreeMap<>();
-        params.put("page_type", "Home");
-        params.put("offset", put_offset);
-        getAPIClient().execGet("/post", params, callback);
-    }
 
 
     private void gotoDetail() {
         mSearchFragment.gotoDetail();
     }
 
-    private String fakeResponse() {
-        return "{\n" +
-                "    \"data\": [\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"724a3ea5-ef37-4168-bc81-548eabb1f6291455781452019\",\n" +
-                "            \"name\": \"\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"status\": \"success\"\n" +
-                "}";
+    private void getSearchStore() {
+
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Response mResponse) throws IOException {
+                String body = mResponse.body().string();
+                if (mResponse.isSuccessful()) {
+                    Log.d(TAG, body);
+                    final ListStores data = new Gson().fromJson(body, ListStores.class);
+
+                    mBaseActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mHomeListStoreAdapter.setPosts(data.response.shops);
+                        }
+                    });
+                    mBaseActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                        }
+                    });
+                } else {
+                    body = mResponse.body().string();
+                    Log.d(TAG, body);
+                }
+            }
+        };
+        String put_offset = String.valueOf(25);
+        SortedMap<String, String> params = new TreeMap<>();
+        params.put("name", mNameStore.getText().toString());
+        params.put("lat", "16.144326");
+        params.put("longth", "105.386158");
+        params.put("address", mAddressSearch.getText().toString());
+        params.put("lang", "vi");
+        params.put("index", "0");
+        params.put("offset", put_offset);
+        getAPIClient().execPostWithUrlParameters("/shop_search", params, params, callback);
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         gotoDetail();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bt_search:
+                mListStoreSearch.setAdapter(mHomeListStoreAdapter);
+                getSearchStore();
+                break;
+            default:break;
+        }
     }
 }

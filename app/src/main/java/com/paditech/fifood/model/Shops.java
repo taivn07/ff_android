@@ -10,7 +10,7 @@ public class Shops extends ListStore{
     public String lat;
     public String longth;
     public String distance;
-    public int rating;
+    public float rating;
     public int total_comment;
 
 }

@@ -172,21 +172,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <ImageView
                 android:id="@+id/iv_take_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_cam" />
+                android:src="@drawable/ic_cam"
+                android:layout_weight="0.5"
+                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Choose image avatar" />
+                android:gravity="center|right"
+                android:text="Choose image avatar"
+                android:layout_weight="2"
+                android:layout_marginRight="@dimen/default_margin"/>
+            <ImageView
+                android:id="@+id/iv_choose_avatar_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cam"
+                android:layout_weight="0.5"/>
         </LinearLayout>
 
+
+        <GridView
+            android:id="@+id/gv_display_image_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/themeHeader"
+            android:numColumns="3"
+            android:verticalSpacing="3dp"
+            android:horizontalSpacing="3dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"></GridView>
     </LinearLayout>
 </ScrollView>
