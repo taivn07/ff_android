@@ -1,47 +1,54 @@
 package com.paditech.fifood.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
 import com.paditech.fifood.R;
-import com.paditech.fifood.model.BaseModel;
+import com.paditech.fifood.activity.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * Created by PaditechPC1 on 2/26/2016.
  */
 public class ImageAdapter extends BaseAdapter {
-    ArrayList<String> mList;
+    private static final String TAG = ImageAdapter.class.getSimpleName();
+    ArrayList<Bitmap> mList;
     LayoutInflater mInflater;
-    Context mContext;
+    Activity mActivity;
     SparseBooleanArray mSparseBooleanArray;
-//    private DisplayImageOptions options;
 
-
-    public ImageAdapter(Context context, ArrayList<String> imageList) {
+    public ImageAdapter(Activity activity, ArrayList<Bitmap> imageList) {
         // TODO Auto-generated constructor stub
-        mContext = context;
-        mInflater = LayoutInflater.from(mContext);
+        this.mActivity = activity;
+        mInflater = LayoutInflater.from(mActivity);
         mSparseBooleanArray = new SparseBooleanArray();
-        mList = new ArrayList<String>();
+        mList = new ArrayList<Bitmap>();
         this.mList = imageList;
-
     }
 
-    public ArrayList<String> getCheckedItems() {
-        ArrayList<String> mTempArry = new ArrayList<String>();
+    public ArrayList<Bitmap> getCheckedItems() {
+        ArrayList<Bitmap> mTempArry = new ArrayList<Bitmap>();
 
         for(int i=0;i<mList.size();i++) {
             if(mSparseBooleanArray.get(i)) {
@@ -54,6 +61,7 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        Log.d(TAG,String.valueOf(mList.size()));
         return mList.size();
     }
 
@@ -69,42 +77,30 @@ public class ImageAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//        options = new DisplayImageOptions.Builder()
-//                .showStubImage(R.drawable.stub_image)
-//                .showImageForEmptyUri(R.drawable.image_for_empty_url)
-//                .cacheInMemory()
-//                .cacheOnDisc()
-//                .build();
-//
-//        if(convertView == null) {
-//            convertView = mInflater.inflate(R.layout.row_multiphoto_item, null);
-//        }
-//
-//        CheckBox mCheckBox = (CheckBox) convertView.findViewById(R.id.checkBox1);
-//        final ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView1);
-//
-//        imageLoader.displayImage("file://"+mList.get(position), imageView, options, new SimpleImageLoadingListener() {
-//            @Override
-//            public void onLoadingComplete(Bitmap loadedImage) {
-//                Animation anim = AnimationUtils.loadAnimation(MultiPhotoSelectActivity.this, R.anim.fade_in);
-//                imageView.setAnimation(anim);
-//                anim.start();
-//            }
-//        });
-//
-//        mCheckBox.setTag(position);
-//        mCheckBox.setChecked(mSparseBooleanArray.get(position));
-//        mCheckBox.setOnCheckedChangeListener(mCheckedChangeListener);
+        DisplayImageOptions options;
+
+        final ViewHolder holder;
+
+        if(convertView == null) {
+            convertView = mInflater.inflate(R.layout.grid_image_item, null);
+            holder = new ViewHolder();
+            holder.mThumbImage = (ImageView)convertView.findViewById(R.id.iv_thumb_image);
+            holder.spinner = (ProgressBar)convertView.findViewById(R.id.loading);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.mThumbImage.setImageBitmap(mList.get(position));
+
+
 
         return convertView;
     }
 
-    CompoundButton.OnCheckedChangeListener mCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
+    private class ViewHolder {
+        ImageView mThumbImage;
+            ProgressBar spinner;
 
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            // TODO Auto-generated method stub
-            mSparseBooleanArray.put((Integer) buttonView.getTag(), isChecked);
-        }
-    };
+    }
+
 }

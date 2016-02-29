@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.activity.MainActivity;
@@ -68,4 +69,6 @@ public abstract class BaseFragment extends Fragment {
 	public SettingClient getSettingClient() {
 		return ( (BaseActivity) getActivity() ).getSettingClient();
 	}
+
+	protected ImageLoader imageLoader = ImageLoader.getInstance();
 }

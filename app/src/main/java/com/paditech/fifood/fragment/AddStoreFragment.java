@@ -15,28 +15,37 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.adapter.ImageAdapter;
+import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by PaditechPC1 on 2/16/2016.
  */
 public class AddStoreFragment extends TabBaseFragment implements View.OnClickListener {
     ImageView mChosseImage;
-    GridView mDisplayImageStore;
+    ImageView mAvatarPost;
+    TextView mChooseAvatar;
+    GridViewWithHeaderAndFooter mDisplayImageStore;
     BaseActivity mBaseActivity;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-    ImageAdapter mImage;
+    private ImageAdapter imageAdapter;
+    private ArrayList<Bitmap> drawablesResource;
+    private  Bitmap thumbnail;
+    private  Bitmap bm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,9 +80,18 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
         setHeaderButtonRight(View.VISIBLE);
         setHeaderButtonLeft(View.INVISIBLE);
         setCurrentMenu(0);
-        mChosseImage = (ImageView)view.findViewById(R.id.iv_take_image);
+        mDisplayImageStore = (GridViewWithHeaderAndFooter) view.findViewById(R.id.gv_display_image_store);
+        LayoutInflater layoutInflater = LayoutInflater.from(mBaseActivity);
+        View headerView = layoutInflater.inflate(R.layout.header_image_shop_grid_view, null, false);
+        mDisplayImageStore.addHeaderView(headerView);
+        mChosseImage = (ImageView)headerView.findViewById(R.id.iv_take_image);
         mChosseImage.setOnClickListener(this);
-        mDisplayImageStore = (GridView) view.findViewById(R.id.gv_display_image_store);
+        mAvatarPost = (ImageView)headerView.findViewById(R.id.iv_choose_avatar_store);
+        mChooseAvatar = (TextView)headerView.findViewById(R.id.tv_choose_avatar);
+
+        drawablesResource = new ArrayList<Bitmap>();
+        imageAdapter = new ImageAdapter(mBaseActivity,drawablesResource);
+        mDisplayImageStore.setAdapter(imageAdapter);
 
     }
 
@@ -97,6 +115,17 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
             else if (requestCode == REQUEST_CAMERA)
                 onCaptureImageResult(data);
         }
+
+        imageAdapter = new ImageAdapter(mBaseActivity, drawablesResource);
+        imageAdapter.getCheckedItems();
+        mDisplayImageStore.setAdapter(imageAdapter);
+        mChooseAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
     private void selectImage() {
@@ -115,7 +144,7 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
                     startActivityForResult(
-                            Intent.createChooser(intent, "Select File"),SELECT_FILE);
+                            Intent.createChooser(intent, "Select File"), SELECT_FILE);
                 } else if (items[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
@@ -125,7 +154,7 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
     }
 
     private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
@@ -144,20 +173,20 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
             e.printStackTrace();
         }
 
+        drawablesResource.add(thumbnail);
+
+
     }
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
         Uri selectedImageUri = data.getData();
         String[] projection = { MediaStore.MediaColumns.DATA };
-        Cursor cursor = mBaseActivity.managedQuery(selectedImageUri, projection, null, null,
-                null);
+        Cursor cursor = mBaseActivity.getContentResolver().query(selectedImageUri, projection, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         cursor.moveToFirst();
-
         String selectedImagePath = cursor.getString(column_index);
 
-        Bitmap bm;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeFile(selectedImagePath, options);
@@ -169,7 +198,6 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
         options.inSampleSize = scale;
         options.inJustDecodeBounds = false;
         bm = BitmapFactory.decodeFile(selectedImagePath, options);
-
-
+        drawablesResource.add(bm);
     }
 }
