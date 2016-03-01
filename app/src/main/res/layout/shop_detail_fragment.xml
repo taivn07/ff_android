@@ -1,106 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/layout_root_post_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:background="@color/white">
-
-    <ListView
-        android:id="@+id/lv_detail_store"
+    android:layout_weight="1">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
+        android:layout_height="wrap_content"
+        android:layout_weight="0.9">
+        <ListView
+            android:id="@+id/lv_detail_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ListView>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_layout_tool_bar_shop_detail"
-        android:orientation="vertical"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_weight="0.1"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_layout_comment_shop_detail"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
             <EditText
                 android:id="@+id/et_input_comment"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/edit_text_comment_height"
-                android:layout_weight="0.15"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="@dimen/default_margin"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_weight="0.15"
                 android:background="@drawable/theme_color_border_background_edit_text"
-                android:layout_gravity="center"
                 android:hint="@string/hint"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp" />
+
             <Button
                 android:id="@+id/bt_post_comment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="@dimen/default_margin"
-                android:layout_marginBottom="@dimen/default_margin"
-                android:layout_weight="0.85"
-                android:gravity="center"
                 android:layout_gravity="center"
-                android:text="@string/post"
+                android:layout_marginBottom="@dimen/default_margin"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="@dimen/default_margin"
+                android:layout_weight="0.85"
                 android:background="@color/white"
-                android:textColor="@color/themeHeader"/>
+                android:gravity="center"
+                android:text="@string/post"
+                android:textColor="@color/themeHeader" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="4">
+
             <TextView
-                android:id="@+id/bt_take_image_shop_detail"
+                android:id="@+id/tv_take_image_shop_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/cam"
-                android:background="@color/white"
+                android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/default_margin"
-                android:layout_gravity="center"/>
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/cam" />
+
             <TextView
-                android:id="@+id/bt_status_good_shop_detail"
+                android:id="@+id/tv_status_good_shop_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:drawableLeft="@drawable/ic_good"
+                android:gravity="left|center"
                 android:text="@string/good"
-                android:textAllCaps="false"
-                android:gravity="left|center"
-                android:background="@color/white"
-                android:layout_gravity="center"/>
+                android:textAllCaps="false" />
+
             <TextView
-                android:id="@+id/bt_status_bad_shop_detail"
+                android:id="@+id/tv_status_bad_shop_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:drawableLeft="@drawable/ic_bad"
-                android:background="@color/white"
-                android:text="@string/bad"
-                android:textAllCaps="false"
                 android:gravity="left|center"
-                android:layout_gravity="center"/>
+                android:text="@string/bad"
+                android:textAllCaps="false" />
+
             <TextView
-                android:id="@+id/bt_hygiene_problem_shop_detail"
+                android:id="@+id/tv_hygiene_problem_shop_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/hygiene_problem"
-                android:textAllCaps="false"
-                android:background="@color/white"
-                android:gravity="left|center"
-                android:drawableRight="@drawable/checkbox_bg"
                 android:layout_marginRight="5dp"
-                />
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableRight="@drawable/checkbox_bg"
+                android:gravity="left|center"
+                android:text="@string/hygiene_problem"
+                android:textAllCaps="false" />
         </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

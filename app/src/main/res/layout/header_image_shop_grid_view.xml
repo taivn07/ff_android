@@ -182,8 +182,8 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_cam"
                 android:layout_weight="0.5"
+                android:layout_gravity="center"
                 />
-
             <TextView
                 android:id="@+id/tv_choose_avatar"
                 android:layout_width="match_parent"
@@ -195,10 +195,10 @@
                 android:layout_marginRight="@dimen/default_margin"/>
             <ImageView
                 android:id="@+id/iv_choose_avatar_store"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_cam"
-                android:layout_weight="0.5"/>
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:layout_weight="0.5"
+                android:layout_gravity="center"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

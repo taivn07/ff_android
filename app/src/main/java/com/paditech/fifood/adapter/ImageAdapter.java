@@ -65,6 +65,13 @@ public class ImageAdapter extends BaseAdapter {
         return mList.size();
     }
 
+    public void clear() {
+        if ( mList != null ) {
+            mList.clear();
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public Object getItem(int position) {
         return null;
@@ -76,7 +83,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         DisplayImageOptions options;
 
         final ViewHolder holder;
@@ -86,11 +93,19 @@ public class ImageAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.mThumbImage = (ImageView)convertView.findViewById(R.id.iv_thumb_image);
             holder.spinner = (ProgressBar)convertView.findViewById(R.id.loading);
+            holder.mDelete = (ImageView)convertView.findViewById(R.id.iv_delete);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.mThumbImage.setImageBitmap(mList.get(position));
+        holder.mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
 
 
@@ -99,7 +114,9 @@ public class ImageAdapter extends BaseAdapter {
 
     private class ViewHolder {
         ImageView mThumbImage;
-            ProgressBar spinner;
+        ProgressBar spinner;
+        ImageView mDelete;
+
 
     }
 

@@ -55,12 +55,14 @@ public class SearchStoreFragment extends TabBaseFragment implements AdapterView.
         View view = getView();
         mSearchFragment = (SearchFragment) getParentFragment();
         mBaseActivity = mSearchFragment.mBaseActivity;
+
         mSearch = (ImageView) view.findViewById(R.id.bt_search);
         mSearch.setOnClickListener(this);
         mNameStore = (EditText)view.findViewById(R.id.et_name_store);
         mAddressSearch = (EditText)view.findViewById(R.id.et_store_address);
         mHomeListStoreAdapter = new HomeListStoreAdapter(mBaseActivity);
         mListStoreSearch = (ListView) view.findViewById(R.id.lv_list_store_search);
+
         mListStoreSearch.setAdapter(mHomeListStoreAdapter);
         mListStoreSearch.setOnItemClickListener(this);
         getSearchStore();

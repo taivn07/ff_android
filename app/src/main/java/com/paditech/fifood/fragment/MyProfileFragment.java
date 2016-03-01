@@ -1,17 +1,28 @@
 package com.paditech.fifood.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.adapter.ListStorePostMyProfileAdapter;
 import com.paditech.fifood.model.ListStores;
+import com.paditech.fifood.model.MyShops;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * Created by PaditechPC1 on 2/22/2016.
@@ -23,6 +34,8 @@ public class MyProfileFragment extends TabBaseFragment implements AdapterView.On
     ListStorePostMyProfileAdapter mListStorePostMyProfileAdapter;
     ListView mListStoreProfile;
     private BaseActivity mBaseActivity;
+    ImageView mLogout;
+    TextView mNumberPost;
 
 
     @Override
@@ -41,12 +54,16 @@ public class MyProfileFragment extends TabBaseFragment implements AdapterView.On
         mProfileFragment = (ProfileFragment)getParentFragment();
         mBaseActivity = mProfileFragment.mBaseActivity;
         mListStoreProfile = (ListView)view.findViewById(R.id.lv_list_store_post_my_profile);
+        mNumberPost = (TextView)view.findViewById(R.id.number_post);
         mListStorePostMyProfileAdapter = new ListStorePostMyProfileAdapter(mBaseActivity);
         mListStoreProfile.setAdapter(mListStorePostMyProfileAdapter);
         mListStoreProfile.setOnItemClickListener(this);
-        String body = fakeResponse();
-        final ListStores data = new Gson().fromJson(body, ListStores.class);
-//        mListStorePostMyProfileAdapter.setPosts(data.data);
+        mLogout = (ImageView) view.findViewById(R.id.iv_logout);
+        mLogout.setOnClickListener(this);
+//        String body = fakeResponse();
+//        final ListStores data = new Gson().fromJson(body, ListStores.class);
+////        mListStorePostMyProfileAdapter.setPosts(data.data);
+        getPostMyStore();
 
     }
 
@@ -60,76 +77,53 @@ public class MyProfileFragment extends TabBaseFragment implements AdapterView.On
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.iv_logout:
+
+                break;
+            default:break;
+        }
 
     }
-    private String fakeResponse() {
-        return "{\n" +
-                "    \"data\": [\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"724a3ea5-ef37-4168-bc81-548eabb1f6291455781452019\",\n" +
-                "            \"name\": \"\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"status\": \"success\"\n" +
-                "}";
+    private void getPostMyStore() {
+
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Response mResponse) throws IOException {
+                String body = mResponse.body().string();
+                if (mResponse.isSuccessful()) {
+                    Log.d(TAG, body);
+                    final MyShops data = new Gson().fromJson(body, MyShops.class);
+
+                    mBaseActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mListStorePostMyProfileAdapter.setPosts(data.response.shops);
+                            mNumberPost.setText(String.valueOf(data.response.total));
+                        }
+                    });
+                    mBaseActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                        }
+                    });
+                } else {
+                    body = mResponse.body().string();
+                    Log.d(TAG, body);
+                }
+            }
+        };
+        String put_offset = String.valueOf(1);
+        SortedMap<String, String> params = new TreeMap<>();
+        params.put("user_id", "4");
+        params.put("token", "8K2MY6IVCCOZ");
+        params.put("lang", "vi");
+        params.put("index", "1");
+        params.put("offset", put_offset);
+        getAPIClient().execPostWithUrlParameters("/myshop", params, params, callback);
     }
 }

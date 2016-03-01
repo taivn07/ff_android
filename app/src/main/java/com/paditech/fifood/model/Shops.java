@@ -12,5 +12,6 @@ public class Shops extends ListStore{
     public String distance;
     public float rating;
     public int total_comment;
+    public int notify_num;
 
 }

@@ -71,6 +71,7 @@ public class LoginFragment extends BaseFragment implements View.OnClickListener 
         mBaseActivity = (BaseActivity)getActivity();
         mLoadingDialog = DialogUtil.makeLoadingDialog(mBaseActivity);
         mCallbackManager = CallbackManager.Factory.create();
+
         mLogin = (RelativeLayout)view.findViewById(R.id.facebook_login_button);
         mLogin.setOnClickListener(this);
         mJoin = (LinearLayout)view.findViewById(R.id.skip);

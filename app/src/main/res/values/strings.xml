@@ -30,5 +30,7 @@
     <string name="food_safety_authority">Food Safety Authority</string>
     <string name="images">Images</string>
     <string name="facebook_app_id">1700629383488025</string>
+    <string name="account_create_success">Store created successfully!</string>
+    <string name="error_mail_account_exists">Created Fail</string>
 
 </resources>

@@ -24,7 +24,8 @@
                 android:layout_height="@dimen/image_size"
                 android:layout_centerInParent="true"
                 android:layout_margin="5dp"
-                android:src="@drawable/profile_placeholder" />
+                android:src="@drawable/profile_placeholder"
+                android:scaleType="centerCrop"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -72,6 +73,7 @@
         android:layout_gravity="center"
         android:src="@drawable/image_placeholder"
         android:background="@drawable/border_image_post_comment_store"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:visibility="gone"/>
 
 </LinearLayout>

@@ -71,9 +71,11 @@ public class NearMeFragment extends TabBaseFragment implements View.OnClickListe
         setHeaderButtonRight(View.INVISIBLE);
         setHeaderButtonLeft(View.INVISIBLE);
         setCurrentMenu(0);
+
         mHomeListStoreAdapter = new HomeListStoreAdapter(mBaseActivity);
         mListStoreNearMe = (ListView) view.findViewById(R.id.map);
         mListStoreNearMe.setAdapter(mHomeListStoreAdapter);
+
         getPostStoreNearMe();
         initilizeMap();
 
@@ -97,7 +99,6 @@ public class NearMeFragment extends TabBaseFragment implements View.OnClickListe
         Callback callback = new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-//                dialog.dismiss();
             }
             @Override
             public void onResponse(Response mResponse) throws IOException {

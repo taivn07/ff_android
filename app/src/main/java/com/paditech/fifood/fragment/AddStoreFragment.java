@@ -2,6 +2,7 @@ package com.paditech.fifood.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,14 +14,30 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
 import com.paditech.fifood.adapter.ImageAdapter;
+import com.paditech.fifood.model.ListStores;
+import com.paditech.fifood.utils.DialogUtil;
+import com.paditech.fifood.utils.ErrorUtil;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import org.json.JSONObject;
+
 import in.srain.cube.views.GridViewWithHeaderAndFooter;
 
 import java.io.ByteArrayOutputStream;
@@ -30,6 +47,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 
 /**
@@ -39,6 +58,16 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
     ImageView mChosseImage;
     ImageView mAvatarPost;
     TextView mChooseAvatar;
+    EditText mNameStore;
+    EditText mAddressStore;
+    EditText mContentComment;
+    RelativeLayout mGood;
+    ImageView mGoodImage;
+    RelativeLayout mBad;
+    ImageView mBadImage;
+    RelativeLayout mHygieneProblem;
+    ImageView mHygieneProblemImage;
+
     GridViewWithHeaderAndFooter mDisplayImageStore;
     BaseActivity mBaseActivity;
     int REQUEST_CAMERA = 0, SELECT_FILE = 1;
@@ -46,7 +75,7 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
     private ArrayList<Bitmap> drawablesResource;
     private  Bitmap thumbnail;
     private  Bitmap bm;
-
+    private  boolean isHygieneProblem = false;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,26 +109,116 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
         setHeaderButtonRight(View.VISIBLE);
         setHeaderButtonLeft(View.INVISIBLE);
         setCurrentMenu(0);
+        setupUI(view.findViewById(R.id.layout_root_create_store));
+
         mDisplayImageStore = (GridViewWithHeaderAndFooter) view.findViewById(R.id.gv_display_image_store);
         LayoutInflater layoutInflater = LayoutInflater.from(mBaseActivity);
+
         View headerView = layoutInflater.inflate(R.layout.header_image_shop_grid_view, null, false);
         mDisplayImageStore.addHeaderView(headerView);
         mChosseImage = (ImageView)headerView.findViewById(R.id.iv_take_image);
         mChosseImage.setOnClickListener(this);
         mAvatarPost = (ImageView)headerView.findViewById(R.id.iv_choose_avatar_store);
         mChooseAvatar = (TextView)headerView.findViewById(R.id.tv_choose_avatar);
+        mNameStore = (EditText)headerView.findViewById(R.id.et_name_store);
+        mAddressStore = (EditText)headerView.findViewById(R.id.et_store_address);
+        mContentComment = (EditText)headerView.findViewById(R.id.et_content_add_store);
+        mGood = (RelativeLayout)headerView.findViewById(R.id.rl_good);
+        mGood.setOnClickListener(this);
+        mGoodImage = (ImageView)headerView.findViewById(R.id.iv_good);
+        mBad = (RelativeLayout)headerView.findViewById(R.id.rl_bad);
+        mBad.setOnClickListener(this);
+        mBadImage = (ImageView)headerView.findViewById(R.id.iv_bad);
+        mHygieneProblem = (RelativeLayout)headerView.findViewById(R.id.rl_hygiene_problem);
+        mHygieneProblem.setOnClickListener(this);
+        mHygieneProblemImage = (ImageView)headerView.findViewById(R.id.iv_hygiene_problem);
 
         drawablesResource = new ArrayList<Bitmap>();
         imageAdapter = new ImageAdapter(mBaseActivity,drawablesResource);
         mDisplayImageStore.setAdapter(imageAdapter);
 
+
     }
+    @Override
+    protected void onHeaderRightButtonClick() {
+        Log.d(TAG, "1223");
+        getPostCreateStore();
+    }
+
+
+    private void getPostCreateStore() {
+        final Dialog dialog = DialogUtil.makeLoadingDialog(mBaseActivity);
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+            }
+
+            @Override
+            public void onResponse(Response mResponse) throws IOException {
+                final String body = mResponse.body().string();
+                final boolean success = mResponse.isSuccessful();
+
+                mBaseActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                        if (success) {
+                            Toast.makeText(getActivity(), R.string.account_create_success, Toast.LENGTH_SHORT).show();
+                        }
+                        ErrorUtil.processError(body, new ErrorUtil.ErrorListenner() {
+                            @Override
+                            public boolean onError(JSONObject error) {
+                                if (error.has("mailAddressAlreadyExists")) {
+                                    Toast.makeText(getActivity(), R.string.error_mail_account_exists, Toast.LENGTH_SHORT).show();
+                                    return true;
+                                }
+                                return false;
+                            }
+                        });
+                    }
+                });
+            }
+        };
+        SortedMap<String, String> params = new TreeMap<>();
+        params.put("user_id", "4");
+        params.put("token", "8K2MY6IVCCOZ");
+        params.put("name", mNameStore.getText().toString());
+        params.put("lat", "16.144326");
+        params.put("longth", "105.386158");
+        params.put("address", mAddressStore.getText().toString());
+        params.put("content", mContentComment.getText().toString());
+        params.put("lang", "vi");
+        params.put("files", "1");
+        params.put("is_like", "1");
+        params.put("is_main", "1");
+        params.put("is_report", "1");
+        params.put("main_file_id", "1");
+        getAPIClient().execPostWithUrlParameters("/shop_create", params, params, callback);
+    }
+
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.iv_take_image:
                 selectImage();
+                break;
+            case R.id.rl_good:
+                mGoodImage.setImageResource(R.drawable.ic_good_ac);
+                mBadImage.setImageResource(R.drawable.ic_bad);
+                break;
+            case R.id.rl_bad:
+                mBadImage.setImageResource(R.drawable.ic_bad_ac);
+                mGoodImage.setImageResource(R.drawable.ic_good);
+                break;
+            case R.id.rl_hygiene_problem:
+
+                if (!isHygieneProblem){
+                    mHygieneProblemImage.setImageResource(R.drawable.checkbox);
+                } else {
+                    mHygieneProblemImage.setImageResource(R.drawable.checkbox_bg);
+                }
+                isHygieneProblem = !isHygieneProblem;
                 break;
             default:break;
         }
@@ -119,9 +238,19 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
         imageAdapter = new ImageAdapter(mBaseActivity, drawablesResource);
         imageAdapter.getCheckedItems();
         mDisplayImageStore.setAdapter(imageAdapter);
+        imageAdapter.notifyDataSetChanged();
+        mAvatarPost.setImageBitmap(drawablesResource.get(0));
         mChooseAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                float alpha = 0.5f;
+                mDisplayImageStore.setAlpha(alpha);
+                mDisplayImageStore.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        mAvatarPost.setImageBitmap(drawablesResource.get(position));
+                    }
+                });
 
             }
         });
@@ -200,4 +329,30 @@ public class AddStoreFragment extends TabBaseFragment implements View.OnClickLis
         bm = BitmapFactory.decodeFile(selectedImagePath, options);
         drawablesResource.add(bm);
     }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (activity.getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    public void setupUI(View view) {
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+
+            });
+        }
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
+
 }

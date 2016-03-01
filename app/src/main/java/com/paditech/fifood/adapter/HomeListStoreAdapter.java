@@ -72,8 +72,8 @@ public class HomeListStoreAdapter extends BaseAdapter  {
         final Shops shops = getItem(position);
         holder.mNameStore.setText(shops.name);
         holder.mAddress.setText(shops.address);
-        if (!StringUtil.isEmpty(shops.file.url)){
-            Picasso.with(mBaseActivity).load(shops.file.url).placeholder(R.drawable.profile_placeholder).into(holder.mAvatarStore);
+        if (!StringUtil.isEmpty(shops.file.thumbnail_url)){
+            Picasso.with(mBaseActivity).load(shops.file.thumbnail_url).placeholder(R.drawable.profile_placeholder).into(holder.mAvatarStore);
         }
         holder.mStart.setRating(shops.rating);
 

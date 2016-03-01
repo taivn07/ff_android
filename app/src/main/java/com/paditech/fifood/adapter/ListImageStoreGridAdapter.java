@@ -65,8 +65,8 @@ public class ListImageStoreGridAdapter extends BaseAdapter {
         }
 
         final Images images = getItem(position);
-        if (!StringUtil.isEmpty(images.url)) {
-            Picasso.with(mBaseActivity).load(images.url).placeholder(R.drawable.profile_placeholder).into(holder.mPostImageCommentStore);
+        if (!StringUtil.isEmpty(images.thumbnail_url)) {
+            Picasso.with(mBaseActivity).load(images.thumbnail_url).placeholder(R.drawable.profile_placeholder).into(holder.mPostImageCommentStore);
         }
 
 

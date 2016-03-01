@@ -3,6 +3,7 @@ package com.paditech.fifood.fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.view.View;
 
 import com.paditech.fifood.R;
 import com.paditech.fifood.activity.BaseActivity;
@@ -22,8 +23,17 @@ public class TabBaseFragment extends BaseFragment {
         ((TabBarAcitivity)getActivity()).setHeaderTitle(title);
     }
 
-    public void setHeaderButtonRight(int display){
+    protected void setHeaderButtonRight(int display){
         ((TabBarAcitivity)getActivity()).setHeaderButtonRight(display);
+    }
+
+    protected void setClickButtonRight(){
+        ((TabBarAcitivity)getActivity()).setClickButtonRight();
+        onHeaderRightButtonClick();
+    }
+
+    protected void onHeaderRightButtonClick() {
+
     }
 
     public void setHeaderButtonLeft(int display){

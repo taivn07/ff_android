@@ -50,30 +50,23 @@ public class ListStoreFragment extends TabBaseFragment implements AdapterView.On
         mhomeFragment = (HomeFragment) getParentFragment();
         mBaseActivity = mhomeFragment.mBaseActivity;
         mHomeListStoreAdapter = new HomeListStoreAdapter(mBaseActivity);
+
         mListStore = (ListView)view.findViewById(R.id.lv_list_store);
         mListStore.setAdapter(mHomeListStoreAdapter);
         mListStore.setOnItemClickListener(this);
-//        String body = fakeResponse();
-//        final ListStores data = new Gson().fromJson(body, ListStores.class);
-//        mHomeListStoreAdapter.setPosts(data.data);
         getPost();
 
     }
 
 
     private void getPost(){
-//        final Dialog dialog = DialogUtil.makeLoadingDialog(mBaseActivity);
-//        dialog.show();
-
         Callback callback = new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
-//                dialog.dismiss();
             }
             @Override
             public void onResponse(Response mResponse) throws IOException {
                 String body = mResponse.body().string();
-//                String body = fakeResponse();
                 if (mResponse.isSuccessful()) {
                     Log.d(TAG, body);
                     final ListStores data = new Gson().fromJson(body, ListStores.class);
@@ -111,28 +104,6 @@ public class ListStoreFragment extends TabBaseFragment implements AdapterView.On
 
     private void gotoDetail() {
         mhomeFragment.gotoDetail();
-    }
-
-    private String fakeResponse() {
-        return "{\n" +
-                "    \"data\": [\n" +
-                "        {\n" +
-                "            \"id\": \"1f7a4169-4c48-4a83-94de-db4de4876f341448794181613\",\n" +
-                "            \"name\": \"test_name\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": \"724a3ea5-ef37-4168-bc81-548eabb1f6291455781452019\",\n" +
-                "            \"name\": \"\",\n" +
-                "            \"thumbnailImageUrl\": \"\",\n" +
-                "            \"accountComment\": \"\",\n" +
-                "            \"isFollowed\": false\n" +
-                "        }\n" +
-                "    ],\n" +
-                "    \"status\": \"success\"\n" +
-                "}";
     }
 
     @Override

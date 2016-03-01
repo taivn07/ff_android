@@ -52,6 +52,7 @@ public class ListImageShopActivity extends HeaderBaseActivity implements View.On
         mListImageStore = (GridView)findViewById(R.id.gv_list_image_store);
         mListImageStoreGridAdapter = new ListImageStoreGridAdapter(this);
         mListImageStore.setAdapter(mListImageStoreGridAdapter);
+
         getPostAccountStore();
         getStoreImages();
 
